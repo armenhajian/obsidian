@@ -1,0 +1,55 @@
+<%- include header %>
+<style>
+    narrow, .eltd-main-menu > ul > li > a {
+        color: black !important;
+    }
+
+    article {
+        osition: absolute;
+        display: inline-block;
+        overflow: hidden;
+        opacity: 0;
+        -webkit-transition: opacity .8s ease;
+        -moz-transition: opacity .8s ease;
+        transition: opacity .8s ease;
+    }
+    .videos {
+        padding: 30px;
+    }
+</style>
+<div class="eltd-content">
+    <div class="eltd-content-inner">
+        <div class="eltd-title eltd-standard-type eltd-type-out- eltd-content-left-alignment eltd-animation-no"
+             style="height:190px;" data-height="190">
+            <div class="eltd-title-image"></div>
+            <div class="eltd-title-holder" style="height:190px;">
+                <div class="eltd-container clearfix">
+                    <div class="eltd-container-inner">
+                        <div class="eltd-title-subtitle-holder" style="">
+                            <div class="eltd-title-subtitle-holder-inner">
+                                <h1 class="eltd-title-size-small">
+                                    <span>Armenia</span>
+                                </h1>
+                                <div class="eltd-breadcrumbs-holder">
+                                    <div class="eltd-breadcrumbs">
+                                        <div class="eltd-breadcrumbs-inner">
+                                            <a href="/" id="photos">Home </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div> <!-- close div.content_inner -->
+</div>  <!-- close div.content -->
+
+<script>
+    jQuery("a.tour-gallery").fancybox();
+</script>
+<%- include footer %>

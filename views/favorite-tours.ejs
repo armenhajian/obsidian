@@ -1,0 +1,100 @@
+<div id="destinations"
+     class="vc_row wpb_row vc_row-fluid eltd-section vc_custom_1477222054071 eltd-content-aligment-center eltd-grid-section"
+     style="">
+    <div class="clearfix eltd-section-inner">
+        <div class="eltd-section-inner-margin clearfix">
+            <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-offset-2 vc_col-lg-8 vc_col-md-offset-1 vc_col-md-10">
+                <div class="vc_column-inner vc_custom_1467811468687">
+                    <div class="wpb_wrapper">
+                        <div class="eltd-section-title-outer-holder" style="text-align: center">
+                            <div class="eltd-section-title-title-holder">
+		<span class="eltd-section-title" style=";">
+			Top Destinations		</span>
+                            </div>
+
+                            <div class="eltd-section-subtitle-holder">
+		<span class="eltd-section-subtitle" style=";">
+			Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.		</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div class="vc_empty_space" style="height: 32px"><span
+                                    class="vc_empty_space_inner"></span></div>
+                        <div class="woocommerce columns-3">
+
+                            <ul class="products eltd-default-type ">
+
+                                <% favoriteTours.forEach(tour=>{ %>
+                                <li class="post-5260 product type-product status-publish has-post-thumbnail product_cat-platforms product_tag-modern product_tag-new product_tag-style pa_people_count-shmbly first instock sale featured shipping-taxable purchasable product-type-simple">
+                                    <div class="eltd-product-inner">
+
+                                        <div class="eltd-product-image-holder">
+
+                                            <div class="eltd-product-image-overlay"
+                                                 style="display:block;">
+                                                <a href="/tours/<%=tour.slug%>"
+                                                   target="_self" style="font-weight: 400; background-color: rgb(125, 191, 184); border-color: rgb(125, 191, 184);display: block;
+    top: 45%;
+    max-width: 60%;
+    left: 20%;"
+                                                   class="eltd-btn eltd-btn-medium eltd-btn-solid eltd-btn-custom-hover-bg eltd-btn-custom-border-hover add_to_cart_button ajax_add_to_cart product_type_simple"
+                                                   data-hover-bg-color="#fff"
+                                                   data-hover-border-color="#fff"
+                                                   rel="nofollow"><span
+                                                            class="eltd-btn-text">View Tour</span></a>
+                                            </div>
+                                            <img width="300" height="300"
+                                                 src="/uploads/<%= tour.avatar.filename %>"
+                                                 class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                                                 alt="<%= tour.avatar.originalname %>"
+                                                 title="<%= tour.avatar.originalname %>"
+                                                 sizes="(max-width: 300px) 100vw, 300px"/>
+                                            <div class="eltd-product-image-overlay">
+                                                <div class="eltd-product-image-overlay-inner">
+                                                    <a href="<%= tour.slug %>" target="_self"
+                                                       style="font-weight: 400"
+                                                       class="eltd-btn eltd-btn-medium eltd-btn-solid eltd-btn-custom-hover-bg eltd-btn-custom-border-hover add_to_cart_button ajax_add_to_cart product_type_simple"
+                                                       data-hover-bg-color="#fff"
+                                                       data-hover-border-color="#fff"
+                                                       rel="nofollow"
+                                                       data-quantity="1">
+                                                    </a></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="eltd-product-content-holder">
+
+                                            <div class="eltd-product-title-holder">
+                                                <h4 class="eltd-product-list-product-title"><a
+                                                            href="<%= tour.slug %>"><%= tour['name_'+lang] %></a></h4>
+                                                <span class="price">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol"><%-currencySymbol%></span>
+                                                            <%=tour.price%>
+                                                        </span>
+                                                </span>
+                                            </div>
+                                            <p class="eltd-single-product-subtitle"><%= tour['description_'+lang] ? tour['description_'+lang].slice(0, 50) : '' %></p>
+                                        </div>
+
+
+                                    </div>
+                                </li>
+                                <% }) %>
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

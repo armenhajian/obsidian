@@ -1,0 +1,34 @@
+<div class="eltd-portfolio-list-holder-outer eltd-ptf-gallery-tiled eltd-ptf-three-columns eltd-ptf-load-more eltd-no-appear-effect"
+     data-type="tiled_gallery" data-columns="three" data-grid-size="three" data-order-by="date"
+     data-order="ASC" data-number="-1" data-show-excerpt="no" data-show-excerpt-on-hover="no" data-image-size="full"
+     data-filter="no" data-filter-order-by="name" data-category="lifetyle" data-enable-pagination="yes"
+     data-pagination-type="load_more" data-title-tag="h3" data-row-height="380" data-spacing="10"
+     data-max-num-pages="0">
+    <div class="eltd-portfolio-list-holder clearfix justified-gallery" style="height: 3387.17px;">
+        <% photos.forEach(photo=>{ %>
+        <article>
+
+            <a class="eltd-portfolio-link" target="_blank" href="https://500px.com<%= photo.url %>"></a>
+
+            <div class="eltd-item-image-holder">
+                <img width="<%=photo.width%>" height="<%=photo.height%>"
+                     src="<%= photo.image_url %>"
+                     class="attachment-full size-full wp-post-image" alt="<%=photo.description%>">
+            </div>
+
+            <div class="eltd-item-text-overlay">
+                <div class="eltd-item-text-overlay-inner">
+                    <div class="eltd-item-text-holder">
+
+                        <h3 class="eltd-item-title"><%= photo.description %> </h3>
+                        <div class="eltd-ptf-category-holder"><a
+                                    href="https://500px.com<%= photo.url %>"><span><%= photo.name %></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+        <% }) %>
+    </div>
+</div>

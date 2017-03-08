@@ -1,0 +1,28 @@
+<form action="/admin/translations" method="post">
+    <div>
+        <select id="language" name="lang">
+            <%languages.forEach(language=>{%>
+            <%if(language.checked){%>
+            <option data-name="<%=language.name%>" <%=language.name==selectedLanguage ? 'selected':''%>><%=language.name%></option>
+            <%}%>
+            <%})%>
+        </select>
+    </div>
+    <div>
+        <textarea id="textbox" rows="25" cols="120" name="data"><%=translations%></textarea>
+    </div>
+    <input type="submit">
+</form>
+<script>
+    $("#language").on('change', function(){
+        $.ajax({
+            url:'/admin/translations',
+            type:'get',
+            data:{
+                lang:$("#language").val()
+            }
+        }).done(function (data) {
+            $("#textbox").val(data || "{\n\t\n}")
+        })
+    });
+</script>

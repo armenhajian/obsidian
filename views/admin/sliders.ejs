@@ -1,0 +1,71 @@
+<div class="list-group">
+    <%sliders.forEach(slider=>{%>
+    <div class="list-group-item">
+        <div class="row-action-primary">
+            <img src="/uploads/<%=slider.image.filename%>">
+        </div>
+        <div class="row-content">
+            <div class="least-content slider-remove" data-value="<%=slider._id%>" style="cursor:pointer">Remove</div>
+            <h4 class="list-group-item-heading"><%=slider.text%></h4>
+        </div>
+    </div>
+    <div class="list-group-separator"></div>
+    <%})%>
+
+</div>
+
+<div style="bottom: 25px;right: 15px;position: absolute;">
+    <a class="btn btn-danger btn-fab" data-toggle="modal" data-target="#add-slider-dialog">
+        <i class="material-icons">add</i>
+    </a>
+</div>
+
+<div id="add-slider-dialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="form-horizontal" name="addslider" action="/admin/slider" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Add slider</legend>
+                        <div class="form-group">
+                            <label for="inputFile" class="col-md-2 control-label">Image</label>
+
+                            <div class="col-md-10">
+                                <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                <input type="file" name="avatar" id="inputFile" multiple="">
+                                <div id="image"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-md-2 control-label">Text</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="text" name="text" placeholder="slider text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="button-link" class="col-md-2 control-label">Button Link</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="button-link" name="buttonLink" placeholder="slider button link">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="button-text" class="col-md-2 control-label">Button Text</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="button-text" name="buttonText" placeholder="slider button text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-slider-dialog">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

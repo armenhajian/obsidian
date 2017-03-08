@@ -1,0 +1,11 @@
+@media only screen and (min-width: 480px) and (max-width: 768px){
+	/* generated in /home6/howtotg6/public_html/wp-content/themes/woly/assets/custom-styles/general-custom-styles-responsive.php woly_elated_design_responsive_styles function */
+.eltd-section.eltd-parallax-section-holder:not(.eltd-full-screen-height-parallax) { height: auto !important;min-height: 400px;}
+
+}
+
+@media only screen and (max-width: 480px){
+	/* generated in /home6/howtotg6/public_html/wp-content/themes/woly/assets/custom-styles/general-custom-styles-responsive.php woly_elated_design_responsive_styles function */
+.eltd-section.eltd-parallax-section-holder:not(.eltd-full-screen-height-parallax) { height: auto !important;min-height: 400px;}
+
+}

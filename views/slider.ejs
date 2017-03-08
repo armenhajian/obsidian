@@ -1,0 +1,86 @@
+<div class="eltd-slider">
+    <div class="eltd-slider-inner">
+        <div class="eltd-slider">
+            <div class="eltd-slider-inner">
+                <div id="eltd-travel2"
+                     class="carousel slide eltd-slider-hide-bottom-paspartu eltd-slide eltd-full-screen   eltd-auto-start    "
+                     data-slide_animation_timeout="6000" data-parallax="yes">
+                    <div class="eltd-slider-preloader">
+                        <div class="eltd-st-loader">
+                            <div class="eltd-st-loader1">
+                                <div class="pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-inner " style="height: 100%"
+                         data-start="transform: translateY(0px);"
+                         data-1440="transform: translateY(500px);">
+                        <% sliders.forEach((slider)=>{ %>
+                        <div class="item  eltd-animate-image zoom_center" style=""
+                             data-eltd_animate_image='zoom_center'>
+                            <div class="eltd-image"
+                                 style="background-image:url(/uploads/<%= slider.image.filename %>)">
+                                <img src="/uploads/<%= slider.image.filename %>"
+                                     alt="<%= slider.text %>"></div>
+                            <div class="eltd-slider-elements-container"
+                                 style="width: 100%; box-sizing: border-box; height: 100%; padding-top: 96px;"
+                                 data-0=" opacity: 1; top: 50%;" data-500=" opacity: 0; top: 25%;">
+                                <div class="eltd-slider-elements-container-inner" style="height: 100%;">
+                                    <div class="eltd-slider-elements-holder-frame eltd-grid"
+                                         style="top: 50%; left: 50%; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);"
+                                         data-default-width="1920">
+                                        <% slider.text.split(' ').forEach(txt=>{ %>
+                                        <div class="eltd-el eltd-slide-element eltd-slide-element-animation-fade eltd-slide-element-text eltd-slide-element-text-normal eltd-slide-element-responsive-text"
+                                             data-width="100" data-default-font-size="130"
+                                             data-default-line-height="135"
+                                             data-resp-scale="{&quot;mobile&quot;:&quot;0.3&quot;,&quot;tabletp&quot;:0.6,&quot;tabletl&quot;:0.7,&quot;laptop&quot;:0.8,&quot;desktop&quot;:1}"
+                                             style="position: static; text-align: center;width: 100%;font-size: 130px;line-height: 135px;font-family: Raleway;font-weight: 400;width: 100%;height: auto;box-sizing:border-box">
+                                            <div class="eltd-slide-element-inner"
+                                                 style="-webkit-animation-delay: 0.3s; animation-delay: 0.3s;">
+                                                <span><%= txt %></span></div>
+                                        </div>
+                                        <% }) %>
+
+                                        <div class="eltd-el eltd-slide-element eltd-slide-element-animation-fade eltd-slide-element-button eltd-slide-element-responsive-button"
+                                             data-default-margin-top="27"
+                                             data-resp-scale="{&quot;mobile&quot;:&quot;1&quot;,&quot;tabletp&quot;:&quot;1&quot;,&quot;tabletl&quot;:&quot;1&quot;,&quot;laptop&quot;:&quot;1&quot;,&quot;desktop&quot;:1}"
+                                             style="position: static; text-align: center;margin-top: 27px;">
+                                            <div class="eltd-slide-element-inner"
+                                                 style="-webkit-animation-delay: 0.3s; animation-delay: 0.3s;">
+                                                <a href="<%= slider.buttonLink %>" target="_self"
+                                                   style="color: #333333;background-color: #ffffff;border-color: #ffffff;font-weight: 400"
+                                                   class="eltd-btn eltd-btn-medium eltd-btn-solid eltd-btn-custom-hover-bg eltd-btn-custom-border-hover eltd-btn-custom-hover-color"
+                                                   data-hover-bg-color="#333333"
+                                                   data-hover-color="#ffffff"
+                                                   data-hover-border-color="#333333"> <span
+                                                            class="eltd-btn-text"><%= slider.buttonText %></span> </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                    <ol class="carousel-indicators" data-start="opacity: 1;" data-500="opacity:0;">
+                        <% sliders.forEach((slider, idx)=>{ %>
+                        <li data-target="#eltd-travel2" data-slide-to="<%= idx %>"
+                                <% idx===0 ? 'class="active"' : '' %>
+                        ></li>
+                        <% }) %>
+
+                    </ol>
+                    <div class="eltd-controls-holder"><a class="left carousel-control"
+                                                         style="padding-top: 96px;" href="#eltd-travel2"
+                                                         data-slide="prev" data-start="opacity: 1;"
+                                                         data-500="opacity:0;"><span
+                                    class="eltd-prev-nav"><span class="arrow_left"></span></span></a><a
+                                class="right carousel-control" style="padding-top: 96px;"
+                                href="#eltd-travel2" data-slide="next" data-start="opacity: 1;"
+                                data-500="opacity:0;"><span class="eltd-next-nav"><span
+                                        class="arrow_right"></span></span></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

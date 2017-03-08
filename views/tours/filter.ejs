@@ -1,0 +1,30 @@
+<div class="tours-filter">
+    <span style="color: #444;font-family: 'Nixie One',cursive;font-size: 18px">Filter</span>
+    <div>
+        <div id="categories-2" class="widget widget_categories">
+            <!--<h6 class="eltd-widget-title">Categories</h6>-->
+            <label class="screen-reader-text" for="cat">Categories</label>
+            <select name='cat' id='cat' class='postform'>
+                <option value='-1'>Select Category</option>
+                <% categories.forEach(category=>{ %>
+                <option class="level-0" value="<%= category._id %>"><%= category['name_'+selectedLanguage] %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div id="days-count" class="widget widget_categories">
+            <!--<h6 class="eltd-widget-title">Days Count</h6>-->
+            <label class="screen-reader-text" for="cat">Days Count</label>
+            <select name='days' id='days' class='postform'>
+                <option value='-1'>Select days count</option>
+                <% days.forEach(day=>{ %>
+                <option class="level-0" value="<%= day %>"><%= day %></option>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div>
+        <input type="reset" id="reset"
+               style="height: 30px;padding: 0;border-radius: 0;width:100px;"
+               class="wpcf7-form-control wpcf7-submit"/>
+    </div>
+</div>

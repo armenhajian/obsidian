@@ -1,0 +1,69 @@
+<%- include ../header %>
+<style>
+    narrow, .eltd-main-menu>ul>li>a {
+        color:black!important;
+    }
+    .widget {
+        margin-top: 10px;
+    }
+</style>
+<div class="eltd-content">
+    <div class="eltd-content-inner">
+        <div class="eltd-title eltd-standard-type eltd-type-out- eltd-content-left-alignment eltd-animation-no"
+             style="height:190px;" data-height="190">
+            <div class="eltd-title-image"></div>
+            <div class="eltd-title-holder" style="height:190px;">
+                <div class="eltd-container clearfix">
+                    <div class="eltd-container-inner">
+                        <div class="eltd-title-subtitle-holder" style="">
+                            <div class="eltd-title-subtitle-holder-inner">
+                                <h1 class="eltd-title-size-small">
+                                    <span>Tours</span>
+                                </h1>
+                                <div class="eltd-breadcrumbs-holder">
+                                    <div class="eltd-breadcrumbs">
+                                        <div class="eltd-breadcrumbs-inner"><a
+                                                    href="/">Obsidian road</a><span
+                                                    class="eltd-delimiter">&nbsp;/&nbsp;</span><span
+                                                    class="eltd-current">Tours</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="eltd-container">
+            <div class="eltd-container-inner clearfix">
+
+                <div class="eltd-two-columns-25-75 eltd-content-has-sidebar clearfix">
+                    <%- include filter %>
+                    <div class="eltd-column2 eltd-content-right-from-sidebar">
+                        <div class="eltd-column-inner">
+                            <div class="vc_row wpb_row vc_row-fluid eltd-section eltd-content-aligment-left"
+                                 style="">
+                                <div class="clearfix eltd-full-section-inner">
+                                    <div class="wpb_column vc_column_container vc_col-sm-12">
+                                        <div class="vc_column-inner ">
+                                            <div class="wpb_wrapper">
+                                                <div class="woocommerce columns-4" id="tours">
+
+                                                    <% include tours %>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- close div.content_inner -->
+</div>  <!-- close div.content -->
+
+<%- include ../footer %>

@@ -1,0 +1,19 @@
+/*
+Theme Name: Woly
+Theme URI: http://woly.elated-themes.com
+Description: A Huge Collection of Modern Templates for All Your Needs
+Author: Elated Themes
+Author URI: http://themeforest.net/user/elated-themes
+Version: 1.0
+Text Domain: woly
+License: GNU General Public License
+License URI: licence/GPL.txt
+Tags: one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar, full-width-template, custom-menu, featured-images, flexible-header, post-formats, sticky-post, translation-ready
+
+CSS changes can be made in files in the /css/ folder. This is a placeholder file required by WordPress, so do not delete it.
+*/
+#comments {display:none!important;}
+.eltd-header-standard .eltd-menu-area {background-color: rgba(255, 255, 255, 0)!important;}
+.eltd-product-image-overlay {display:none;}
+.eltd-single-product-images .images .woocommerce-main-image { display:none;}
+.eltd-btn {padding: 15px 20px!important;}

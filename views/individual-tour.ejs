@@ -1,0 +1,265 @@
+<% include header %>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+    .ui-helper-hidden-accessible {
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px);
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+     #map {
+         width: 450px;
+         height: 300px;
+         float: right;
+         position: relative;
+         overflow: hidden;
+     }
+</style>
+<script>
+    $(function () {
+        $("#from").datepicker({
+            dateFormat: "dd-mm-yy"
+        });
+        $("#to").datepicker({
+            dateFormat: "dd-mm-yy"
+        });
+    });
+</script>
+
+<div class="eltd-content">
+    <div class="eltd-meta">
+        <div class="eltd-seo-title"><%=__('Create Your Trip – Travel')%></div>
+    </div>
+    <div class="eltd-content-inner">
+        <div class="eltd-title eltd-standard-type eltd-type-out- eltd-content-left-alignment eltd-animation-no"
+             style="height:190px;" data-height="190">
+            <div class="eltd-title-image"></div>
+            <div class="eltd-title-holder" style="height:190px;">
+                <div class="eltd-container clearfix">
+                    <div class="eltd-container-inner">
+                        <div class="eltd-title-subtitle-holder" style="">
+                            <div class="eltd-title-subtitle-holder-inner">
+                                <h1 class="eltd-title-size-small">
+                                    <span><%=__('Create Your Trip')%></span>
+                                </h1>
+                                <div class="eltd-breadcrumbs-holder">
+                                    <div class="eltd-breadcrumbs">
+                                        <div class="eltd-breadcrumbs-inner">
+                                            <a href="/"><%=__('Travel')%></a>
+                                            <span class="eltd-delimiter">&nbsp;/&nbsp;</span>
+                                            <span class="eltd-current"><%=__('Create Your Trip')%></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="eltd-container">
+            <div class="eltd-container-inner clearfix">
+
+                <p>&nbsp;</p>
+                <div style="width: 650px; height: 350px; margin: 0 auto;">
+                    <div style="float: left;">
+                        <div id="locationField">
+                            <input id="autocomplete" class="wpcf7-form-control wpcf7-text"
+                                   style="height: 30px;" type="text"
+                                   placeholder="<%=__('NAME OF CITY')%>" autocomplete="off"/>
+                        </div>
+                        <div>
+                            <input id="submit" class="wpcf7-form-control wpcf7-submit"
+                                       style="width: 100%; height: 30px; padding: 0; border-radius: 0;" type="submit" value="<%=__('SHOW ON MAP')%>"><br>
+                            <input id="reset" class="wpcf7-form-control wpcf7-submit"
+                                   style="margin-top: 3px; width: 100%; height: 30px; padding: 0; border-radius: 0;"
+                                   type="submit" value="<%=__('RESET')%>">
+                        </div>
+                        <div id="directions-panel"
+                             style="max-width: 181px; max-height: 190px; overflow-x: auto; margin-top: 2px;"></div>
+                        <div id="locationList" style="max-width: 150px;"></div>
+                    </div>
+
+                    <div id="map"></div>
+                </div>
+                <div class="cst_clear_after" style="width: 650px; margin: 0 auto;">
+                    <div class="cst_floating_right" style="width: 34%;">
+                        <div>
+                            <input id="email" class="wpcf7-form-control wpcf7-text"
+                                   style="width: 100%; padding: 8px; float: right; display: block;"
+                                   type="text" placeholder="<%=__('ENTER YOUR EMAIL ADDRESS')%>">
+                        </div>
+                        <div>
+                            <input id="order" class="wpcf7-form-control wpcf7-submit"
+                                   style="width: 100%; padding: 8px; border-radius: 0; float: right; display: block;"
+                                   type="submit" value="<%=__('CONTACT US')%>">
+                        </div>
+                    </div>
+                    <div class="cst_floating_right" style="width: 33%; margin-right: 2%">
+                        <div>
+                            <input class="wpcf7-form-control wpcf7-text"
+                                   placeholder="<%=__('FROM DATE')%>"
+                                   type="text" id="from" name="from" style="position: relative; z-index: 100000; padding: 8px;">
+                        </div>
+                        <div>
+                            <input class="wpcf7-form-control wpcf7-text"
+                                   placeholder="<%=__('TO DATE')%>"
+                                   type="text" id="to" name="to" style="position: relative; z-index: 100000; padding: 8px;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            var placeSearch, autocomplete,
+                componentForm = {
+                    street_number: 'short_name',
+                    route: 'long_name',
+                    locality: 'long_name',
+                    administrative_area_level_1: 'short_name',
+                    country: 'long_name',
+                    postal_code: 'short_name'
+                },
+                sumDistance = 0, sumDuration = 0,
+                waypts = [];
+            function reset() {
+                waypts = [];
+            }
+            function initMap() {
+                var directionsService = new google.maps.DirectionsService;
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: {lat: 40.187021, lng: 44.490780}
+                });
+                directionsDisplay.setMap(map);
+
+                document.getElementById('reset').addEventListener('click', function () {
+                    waypts = [];
+                    initMap();
+                    document.getElementById('directions-panel').innerHTML = '';
+                });
+                document.getElementById('submit').addEventListener('click', function () {
+                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+                    document.getElementById('locationList').innerHTML = '';
+                });
+            }
+
+            function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+                var origin = waypts[0],
+                    dest = waypts[waypts.length - 1];
+
+                waypts.splice(waypts.length - 1, 1);
+                waypts.splice(0, 1);
+
+                directionsService.route({
+                    origin: origin.location,
+                    destination: dest.location,
+                    waypoints: waypts,
+                    optimizeWaypoints: true,
+                    travelMode: 'DRIVING'
+                }, function (response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                        var route = response.routes[0];
+                        var summaryPanel = document.getElementById('directions-panel');
+                        summaryPanel.innerHTML = '';
+                        // For each route, display summary information.
+                        for (var i = 0; i < route.legs.length; i++) {
+                            var routeSegment = i + 1;
+                            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                                '</b><br>';
+                            summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                            summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                            summaryPanel.innerHTML += route.legs[i].duration.text + '<br>'
+                            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                            sumDistance += route.legs[i].distance.value;
+                            sumDuration += route.legs[i].duration.value;
+                        }
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+
+            function init() {
+                initMap();
+                initAutocomplete();
+            }
+
+            function initAutocomplete() {
+                // Create the autocomplete object, restricting the search to geographical
+                // location types.
+                autocomplete = new google.maps.places.Autocomplete(
+                    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+                    {types: ['geocode']});
+
+                // When the user selects an address from the dropdown, populate the address
+                // fields in the form.
+                autocomplete.addListener('place_changed', fillInAddress);
+            }
+
+            function fillInAddress() {
+                // Get the place details from the autocomplete object.
+                var place = autocomplete.getPlace();
+                //push to waypoints array
+                waypts.push({location: place.formatted_address, stopover: true});
+                document.getElementById('locationList').innerHTML += place.formatted_address + '<br>';
+                document.getElementById('autocomplete').value = '';
+            }
+
+
+        </script>
+        <script async="" defer=""
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk3U54oQKHIqxx0edBmkZpbgLKv56qZGs&amp;libraries=places&amp;callback=init&amp;region=am">
+        </script>
+
+        <script>
+            //for menu click smooth scrolling
+            $("#menu-main-1 a").click(function () {
+                var section = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(section).offset().top
+                });
+            });
+        </script>
+
+    </div> <!-- close div.content_inner -->
+</div>
+<script>
+    $(function () {
+        var dateFormat = "mm/dd/yy",
+            from = $("#from")
+                .datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 3
+                })
+                .on("change", function () {
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+            to = $("#to").datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 3
+            })
+                .on("change", function () {
+                    from.datepicker("option", "maxDate", getDate(this));
+                });
+
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+
+            return date;
+        }
+    });
+</script>
+<% include footer %>

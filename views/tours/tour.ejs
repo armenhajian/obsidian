@@ -1,0 +1,196 @@
+<%- include ../header %>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+    .ui-helper-hidden-accessible {
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px);
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+    #from-datepicker {
+        height: 40px;
+        width:230px;
+    }
+    #to-datepicker {
+        height: 40px;
+        width:230px;
+    }
+    .eltd-page-header {
+        background-color: white;
+    }
+    .summary {
+        width: 560px;
+    }
+</style>
+<script>
+    $(function () {
+        $("#from-datepicker").datepicker({
+            dateFormat : "dd-mm-yy"
+        });
+    });
+</script>
+
+<div class="eltd-content" style="margin-top: -96px">
+    <div class="eltd-content-inner">
+        <div class="eltd-title eltd-standard-type eltd-type-out- eltd-content-left-alignment eltd-animation-no"
+             style="height:286px;" data-height="286">
+            <div class="eltd-title-image"></div>
+            <div class="eltd-title-holder" style="height:190px;padding-top: 96px;">
+                <div class="eltd-container clearfix">
+                    <div class="eltd-container-inner">
+                        <div class="eltd-title-subtitle-holder" style="">
+                            <div class="eltd-title-subtitle-holder-inner">
+                                <h1 style="color:;background-color:;padding:4px 5px 7px 12px"
+                                    class="eltd-title-size-small">
+                                    <span><%= tour['name_'+selectedLanguage] %></span>
+                                </h1>
+                                <div class="eltd-breadcrumbs-holder">
+                                    <div class="eltd-breadcrumbs">
+                                        <div class="eltd-breadcrumbs-inner"><a href="/">Obsidian
+                                                road</a><span class="eltd-delimiter">&nbsp;/&nbsp;</span><span
+                                                    class="eltd-current"><%= tour['name_'+selectedLanguage]%></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="eltd-container">
+            <div class="eltd-container-inner clearfix">
+
+
+                <div itemscope="" itemtype="http://schema.org/Product" id="product-5260"
+                     class="post-5260 product type-product status-publish has-post-thumbnail product_cat-platforms product_tag-modern product_tag-new product_tag-style pa_people_count-shmbly first instock sale featured shipping-taxable purchasable product-type-simple">
+
+                    <div class="eltd-single-product-summary">
+                        <div class="summary entry-summary">
+
+                            <h2 itemprop="name" class="eltd-single-product-title"><%= tour['name_'+selectedLanguage]%></h2>
+                            <div class="eltd-single-product-actions">
+                            </div>
+                            <div class="eltd-single-product-price" itemprop="offers" itemscope=""
+                                 itemtype="http://schema.org/Offer">
+
+                                <% if(tour.price && tour.price>0){ %>
+                                <p class="price">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol"><%- currencySymbol %></span>
+                                            <%= tour.price %>
+                                        </span>
+                                </p>
+                                <%}%>
+
+                                <meta itemprop="price" content="<%= tour.price %>">
+                                <meta itemprop="priceCurrency" content="<%= tour.currency %>">
+
+                            </div>
+                            <div itemprop="description">
+                                <p><%= tour['description_'+selectedLanguage]%></p>
+                                <%if(tour.agenda){%>
+                                <agenda>
+                                    <a href="/agenda/<%= tour.slug %>">View agenda in pdf</a>
+                                </agenda>
+                                <%}%>
+                            </div>
+
+                            <form action="/email-tour" method="post">
+                            <div class="quantity eltd-quantity-buttons clearfix" style="position: relative">
+                                <input type="text" step="1" min="1" name="quantity" value="1" title="Qty"
+                                       class="input-text qty text eltd-quantity-input" size="4" id="quantity"
+                                style="padding: 10px; border: 2px solid #ebebeb;">
+                                <span class="quantity-control" style="position: absolute; left: 52px; top: 0; display: block; height: 100%; border-left: 2px solid #ebebeb;">
+                                    <span class="eltd-quantity-plus" style="cursor:pointer; display: block; height: 50%; border-bottom: 1px solid #ebebeb;">
+                                        <span aria-hidden="true" class="eltd-icon-font-elegant arrow_carrot-up "></span>		</span>
+                                    <span class="eltd-quantity-minus" style="cursor:pointer; display: block; height: 50%; line-height: 0;">
+                                        <span aria-hidden="true"
+                                              class="eltd-icon-font-elegant arrow_carrot-down "></span>		</span>
+                                </span>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <input type="text" id="from-datepicker"
+                                          placeholder="<%=__('From Date')%>"
+                                          class="wpcf7-form-control wpcf7-text"
+                                               name="fromDate"      style="position: relative; z-index: 100000;">
+                                <input type="text" id="to-datepicker"
+                                          placeholder="<%=__('To Date')%>"
+                                          class="wpcf7-form-control wpcf7-text"
+                                       name="toDate" disabled>
+                            </div>
+                                <%if(tour.price && tour.price>0){%>
+                            <div class="sumMoney">Total: <%-currencySymbol%> <span id="sum-money"><%=tour.price%></span></div>
+                                <%}%>
+                                <div style="margin-top: 10px;" >
+                                    <input type="email" id="email"
+                                           placeholder="example@example.com"
+                                           class="wpcf7-form-control wpcf7-text"
+                                           name="email" required>
+                                </div>
+                            <div style="margin-top: 10px;" >
+                                <label><%=__('Contact information')%></label>
+                                <textarea style="width: 475px;text-transform: none;padding: 10px 20px;height: 80px;"
+                                          placeholder="Name: John, Phone number: (012) 3456789,  E-mail: example@email.com"
+                                          title="Write here your contact information. For example tel. number or e-mail"
+                                          class="wpcf7-form-control wpcf7-text"
+                                          name="contactInformation">
+
+                                </textarea>
+                            </div>
+                            <input type="hidden" value="<%= tour.days %>" id="tour-days">
+                            <input type="hidden" value="<%= tour['name_'+selectedLanguage]%>" name="tour">
+                                <input type="hidden" value="<%= tour.slug%>" name="slug">
+                            <input type="hidden" value="<%= tour.price %>" id="tour-price">
+                            <button type="submit" style="font-weight: 400"
+                                    class="eltd-btn eltd-btn-medium eltd-btn-solid eltd-btn-custom-hover-bg eltd-btn-custom-border-hover eltd-btn-custom-hover-color single_add_to_cart_button alt"
+                                    data-hover-bg-color="#333" data-hover-color="fff"
+                                    data-hover-border-color="#333"><span class="eltd-btn-text"><%=__('CONTACT US')%></span>
+                            </button>
+                            </form>
+                        </div>
+                    </div><!-- .eltd-signle-product-summary -->
+                    <div class="tour-map-and-gallery">
+                        <ggl-map>
+                            <%- tour.map %>
+                        </ggl-map>
+                        <div class="tour-galler-container">
+                            <% tour.gallery.forEach(img=>{ %>
+                            <a class="tour-gallery" rel="gallery" href="/uploads/<%= img.filename %>">
+                                <img src="/uploads/<%= img.filename %>" alt="<%= img.originalname %>"/>
+                            </a>
+                            <% }) %>
+                        </div>
+                    </div>
+
+                    <meta itemprop="url" content="http://www.obsidianroad.com/tours/<%= tour.slug %>/">
+                </div>
+
+
+            </div>
+        </div>
+    </div> <!-- close div.content_inner -->
+</div>
+
+<script>
+        $("#from-datepicker").on('change', function(){
+            var dat = new Date($(this).datepicker("getDate").valueOf());
+            dat = new Date(dat.setDate(dat.getDate() + $("#tour-days").val()*1));
+
+            var dd = dat.getDate();
+            var mm = dat.getMonth()+1; //January is 0!
+            var yyyy = dat.getFullYear();
+            if(dd<10){
+                dd='0'+dd;
+            }
+            if(mm<10){
+                mm='0'+mm;
+            }
+            $("#to-datepicker").val(dd+'-'+mm+'-'+yyyy);
+        })
+        $("#quantity").on('change', function () {
+            $("#sum-money").html($("#tour-price").val()*$(this).val())
+        })
+        jQuery("a.tour-gallery").fancybox();
+</script>
+<%- include ../footer %>

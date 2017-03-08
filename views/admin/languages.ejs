@@ -1,0 +1,23 @@
+<div>
+    <% Object.keys(languages).forEach((key)=>{ %>
+        <input type="checkbox" name="<%= languages[key]._id %>" <%= languages[key].checked ? 'checked' : ''%>><label><%= languages[key].name %></label><br>
+    <% }) %>
+
+    <button onclick="activateLanguages()">Save</button>
+</div>
+
+<script>
+    function activateLanguages() {
+        var selected = [];
+        $("input:checked").each(function() {
+            selected.push($(this).attr('name'));
+        });
+        $.ajax({
+            url:'admin/languages',
+            type:'post',
+            data:{
+                data: JSON.stringify(selected)
+            }
+        });
+    }
+</script>

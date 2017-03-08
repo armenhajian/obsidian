@@ -1,0 +1,112 @@
+include {
+    display: none;
+}
+
+.tour-gallery img {
+    max-width: 170px;
+}
+
+.tour-map-and-gallery {
+    float: right;
+    width: 53%;
+}
+
+.tours-filter {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.tours-filter .widget {
+    display: inline-block;
+    max-width: 40%;
+    cursor: pointer;
+}
+
+.tours-filter .widget select {
+    height: 40px;
+    padding: 10px 22px;
+    width:160px;
+}
+
+.cst_clear_after:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.cst_floating_left {
+    float: left;
+    display: block;
+}
+
+.cst_floating_right {
+    float: right;
+    display: block;
+}
+
+.eltd-single-product-summary .eltd-btn {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    line-height: 7px;
+    margin-top: 10px;
+}
+
+.sumMoney {
+    padding: 5px 20px;
+    border: 2px solid #ebebeb;
+    width: 186px;
+    color: #909090;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 13px;
+    display: inline-block;
+}
+
+#to-datepicker {
+    margin-left:10px;
+}
+.widget .postform {
+    cursor: pointer;
+}
+.eltd-fullscreen-search-table {
+    background-color: rgba(0,0,0,.85);
+}
+.animation {
+    -webkit-animation: search_fade_in .25s linear both;
+    -moz-animation: search_fade_in .25s linear both;
+    animation: search_fade_in .25s linear both;
+    z-index: 9999;
+}
+.animation-close {
+    -webkit-animation: search_fade_out .25s linear both;
+    -moz-animation: search_fade_out .25s linear both;
+    animation: search_fade_out .25s linear both;
+    z-index: 9999;
+}
+.eltd-fullscreen-search-close-container {
+    height:100%;
+}
+#search-animate {
+    visibility: hidden;
+}
+.eltd-single-product-summary {
+    padding: 0;
+    width:45%;
+}
+.eltd-mobile-header .eltd-mobile-logo-wrapper a {
+    max-height: 55px!important;
+}
+.eltd-mobile-header .eltd-mobile-header-inner {
+    height: 70px!important;
+}
+.gallery-img-show {
+    float:left;
+    padding: 5px;
+}
+.delete-button-admin {
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+}
+.clear-both {
+    clear: both;
+}

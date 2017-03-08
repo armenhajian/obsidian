@@ -1,0 +1,136 @@
+<div class="list-group">
+    <% products.forEach(p =>{ %>
+    <div class="list-group-item" data-toggle="modal" data-target="#add-product-dialog" onclick="editItem(<%=JSON.stringify(p)%>)">
+        <div class="row-picture">
+            <img class="circle" src="/uploads/<%=p.avatar ? p.avatar.filename : ''%>" alt="icon">
+        </div>
+        <div class="row-content">
+            <h4 class="list-group-item-heading"><%=p.name || ''%></h4>
+
+            <p class="list-group-item-text"><%=p['description_'+selectedLanguage].slice(0,50) ||''%></p>
+        </div>
+    </div>
+    <div class="list-group-separator"></div>
+    <% }) %>
+</div>
+
+<div style="bottom: 25px;right: 15px;position: absolute;">
+    <a class="btn btn-danger btn-fab" data-toggle="modal" data-target="#add-product-dialog">
+        <i class="material-icons">add</i>
+    </a>
+</div>
+
+<div id="add-product-dialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="form-horizontal" name="addProduct" action="/admin/product" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Add Tour</legend>
+                        <%languages.forEach(language=>{%>
+                        <%if(language.checked === true){%>
+                        <div class="form-group">
+                            <label for="name" class="col-md-2 control-label">Name in <%=language.name%></label>
+
+                            <div class="col-md-10">
+
+                                <input type="text" class="form-control" id="name_<%=language.name%>" name="name_<%=language.name%>" placeholder="Tour name in <%=language.name%>">
+                            </div>
+                        </div>
+                        <%}%>
+                        <%})%>
+                        <div class="form-group">
+                            <label for="slug" class="col-md-2 control-label">Slug</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="slug" name="slug" placeholder="tour-name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="col-md-2 control-label">Category</label>
+
+                            <div class="col-md-10">
+                                <select id="category" name="category" class="form-control">
+                                    <% categories.forEach(c =>{ %>
+                                    <option value="<%=c._id%>"><%= c['name_'+selectedLanguage]%></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="togglebutton">
+                                    <label>
+                                        <input type="checkbox" name="favorite" id="favorite"> Favorite
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="days" class="col-md-2 control-label">Days count</label>
+
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" name="days" id="days">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="days" class="col-md-2 control-label">Price</label>
+
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" name="price" id="price">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputFile" class="col-md-2 control-label">Image</label>
+
+                            <div class="col-md-10">
+                                <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                <input type="file" name="avatar" id="inputFile">
+                                <div id="avatar"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputFile_multi" class="col-md-2 control-label">Gallery</label>
+
+                            <div class="col-md-10">
+                                <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                <input type="file" name="gallery" id="inputFile_multi" multiple="true">
+                            </div>
+                            <div class="col-md-12">
+                                <div id="gallery"></div>
+                            </div>
+                        </div>
+                        <%languages.forEach(language=>{%>
+                        <%if(language.checked === true){%>
+                        <div class="form-group">
+                            <label for="description" class="col-md-2 control-label">Description in <%=language.name%></label>
+
+                            <div class="col-md-10">
+                                <textarea placeholder="Description in <%=language.name%>" class="form-control" name="description_<%=language.name%>" rows="3" id="description_<%=language.name%>"></textarea>
+                            </div>
+                        </div>
+                        <%}%>
+                        <%})%>
+                        <div class="form-group">
+                            <label for="map" class="col-md-2 control-label">Map</label>
+
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" id="map" name="map"></textarea>
+                            </div>
+                        </div>
+                        <input style="display:none" name="_id" id="_id">
+                        <input style="display:none" name="old_gallery" id="old_gallery">
+                        <input style="display:none" name="deleted_img" id="deleted_gallery">
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add-product-dialog">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#add-product-dialog" id="remove" style="display: none">Remove</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

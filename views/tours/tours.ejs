@@ -1,0 +1,60 @@
+<ul class="products eltd-default-type ">
+    <%if(tours.length ===0 ){%>
+    <div>
+        <span><%=__('No tours found')%></span>
+    </div>
+    <%}%>
+    <% tours.forEach(tour=>{ %>
+    <li class="post-5017 product type-product status-publish has-post-thumbnail product_cat-trends product_tag-fashionista product_tag-style first instock featured downloadable shipping-taxable purchasable product-type-simple">
+        <div class="eltd-product-inner">
+
+            <div class="eltd-product-image-holder">
+
+                <div class="eltd-product-image-overlay"
+                     style="display:block;">
+                    <a href="/tours/<%= tour.slug %>"
+                       target="_self" style="font-weight: 400; background-color: rgb(125, 191, 184); border-color: rgb(125, 191, 184);display: block;
+    top: 45%;
+    max-width: 60%;
+    left: 20%;"
+                       class="eltd-btn eltd-btn-medium eltd-btn-solid eltd-btn-custom-hover-bg eltd-btn-custom-border-hover add_to_cart_button ajax_add_to_cart product_type_simple"
+                       data-hover-bg-color="#fff"
+                       data-hover-border-color="#fff"
+                       rel="nofollow"><span
+                                class="eltd-btn-text"><%=__('View Tour')%></span></a>
+                </div>
+                <img width="300" height="300"
+                     src="/uploads/<%= tour.avatar.filename %>"
+                     class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                     alt="<%= tour.name %>"
+                     title="<%= tour.name %>"
+                     sizes="(max-width: 300px) 100vw, 300px"/>
+                <div class="eltd-product-image-overlay">
+                    <div class="eltd-product-image-overlay-inner">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="eltd-product-content-holder">
+
+                <div class="eltd-product-title-holder">
+                    <h4 class="eltd-product-list-product-title">
+                        <a href="/tours/<%= tour.slug %>"><%= tour['name_'+selectedLanguage] %></a>
+                    </h4>
+                    <% if(tour.price && tour.price>0){ %>
+                    <span class="price">
+                        <span class="woocommerce-Price-amount amount">
+                            <span class="woocommerce-Price-currencySymbol"><%- currencySymbol %></span>
+                            <%= tour.price %>
+                        </span>
+                    </span>
+                    <%}%>
+                </div>
+                <p class="eltd-single-product-subtitle">
+                    <%= tour['description_'+selectedLanguage].slice(0, 50) %></p>
+            </div>
+    </li>
+    <% }) %>
+
+</ul>
